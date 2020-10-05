@@ -17,10 +17,13 @@ export class PrimeService {
 
   calculPrime(nbPersonne: number, revenus: number, presta: any) {
 
+    console.log(nbPersonne);
+    console.log(revenus);
+
     if(nbPersonne <= 5 && nbPersonne > 0) {
 
       let groupe = this.palier[nbPersonne].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
-      console.log(presta['prime'][groupe['couleur']])
+
       return {
         prime: presta['prime'][groupe['couleur']],
         intitule: presta['intitule']

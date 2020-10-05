@@ -40,6 +40,7 @@ export class AppComponent {
     let revenu = this.primeForm.value.revenu;
     let travaux = this.primeForm.value.travaux;
 
+    console.log(nbPersonnes);
     console.log(travaux.intitule);
 
     if(nbPersonnes && nbPersonnes && travaux) {
