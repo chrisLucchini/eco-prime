@@ -26,7 +26,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
     BrowserAnimationsModule
   ],
   providers: [],
