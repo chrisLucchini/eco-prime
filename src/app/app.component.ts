@@ -50,4 +50,9 @@ export class AppComponent {
 
   }
 
+  refreshForm() {
+
+    this.result = undefined;
+  }
+
 }

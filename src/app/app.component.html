@@ -1,9 +1,9 @@
 <div class="container-form">
-  <div *ngIf="!this.result">
+  <div>
     <div class="logo">
         <img src="../assets/images/eco-habitat.png" alt="" />
     </div>
-    <div class="form-prime">
+    <div class="form-prime" *ngIf="!this.result">
       <form [formGroup]="primeForm">
 
         <mat-form-field appearance="fill">
@@ -26,12 +26,16 @@
         <button (click)=this.submitPrime() mat-raised-button color="primary" style="display: block; margin: auto;">Valider</button>
       </form>
     </div>
+    <div *ngIf="this.result" class="result">
+
+      <h1>Prime: {{result.intitule}}</h1>
+      <div class="result-prime">{{result.prime}}</div>
+      <div><span (click)= this.refreshForm() class="material-icons" style="font-size: 15vh; cursor: pointer">
+        update
+        </span></div>
+
+    </div>
 
   </div>
-  <div *ngIf="this.result" class="result">
 
-    <h1>Prime: {{result.intitule}}</h1>
-    <div class="result-prime">{{result.prime}}</div>
-
-  </div>
 </div>
