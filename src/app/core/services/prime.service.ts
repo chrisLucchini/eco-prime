@@ -12,16 +12,7 @@ export class PrimeService {
 
   constructor() {
     this.palier = new Palier();
-    this.prestations = new Prestations();
-    this.calculPrime(6, 45000, {
-      'intitule': 'chauffe eau thermodynamique',
-      'prime': {
-        'Bleu': 1200,
-        'Jaune': 800,
-        'Violet': 400,
-        'Rose': 0
-      }
-    });
+
    }
 
   calculPrime(nbPersonne: number, revenus: number, presta: any) {
@@ -30,7 +21,10 @@ export class PrimeService {
 
       let groupe = this.palier[nbPersonne].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
       console.log(presta['prime'][groupe['couleur']])
-      return presta['prime'][groupe['couleur']];
+      return {
+        prime: presta['prime'][groupe['couleur']],
+        intitule: presta['intitule']
+      };
     }
     else if(nbPersonne > 5) {
       let coeff = nbPersonne - 5;
@@ -59,8 +53,10 @@ export class PrimeService {
         ]
       }
       let groupe = newPalier['nbPers'].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
-      console.log(presta['prime'][groupe['couleur']])
-      return presta['prime'][groupe['couleur']];
+      return {
+        prime: presta['prime'][groupe['couleur']],
+        intitule: presta['intitule']
+      };
 
     }
   }

@@ -1,8 +1,8 @@
 export class Prestations {
 
-  liste: [
+  liste= [
     {
-      'intitule': 'pompe à chaleur air/eau',
+      'intitule': 'Pompe à chaleur air/eau',
       'prime': {
         'Bleu': 4000,
         'Jaune': 3000,
@@ -11,7 +11,7 @@ export class Prestations {
       }
     },
     {
-      'intitule': 'chauffe eau thermodynamique',
+      'intitule': 'Chauffe eau thermodynamique',
       'prime': {
         'Bleu': 1200,
         'Jaune': 800,
@@ -20,7 +20,7 @@ export class Prestations {
       }
     },
     {
-      'intitule': 'depose d\'une cuve a fioul',
+      'intitule': 'Depose d\'une cuve a fioul',
       'prime': {
         'Bleu': 1200,
         'Jaune': 800,
@@ -29,7 +29,7 @@ export class Prestations {
       }
     },
     {
-      'intitule': 'fenetre',
+      'intitule': 'Fenetre',
       'prime': {
         'Bleu': 100,
         'Jaune': 80,
@@ -38,7 +38,7 @@ export class Prestations {
       }
     },
     {
-      'intitule': 'isolation des murs exterieurs',
+      'intitule': 'Isolation des murs exterieurs',
       'prime': {
         'Bleu': 75,
         'Jaune': 60,

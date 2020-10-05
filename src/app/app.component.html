@@ -1,1 +1,37 @@
-<h1>yeeeaahhhhh</h1>
+<div class="container-form">
+  <div *ngIf="!this.result">
+    <div class="logo">
+        <img src="../assets/images/eco-habitat.png" alt="" />
+    </div>
+    <div class="form-prime">
+      <form [formGroup]="primeForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de personnes dans le foyer</mat-label>
+          <input matInput formControlName='nbPersonnes' type="number">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Revenu</mat-label>
+          <input matInput formControlName='nbPersonnes' type="number">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Travaux</mat-label>
+          <mat-select formControlName='travaux'>
+            <mat-option *ngFor="let item of this.prestations.liste" [value]="item">{{item.intitule}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button (click)=this.submitPrime() mat-raised-button color="primary" style="display: block; margin: auto;">Valider</button>
+      </form>
+    </div>
+
+  </div>
+  <div *ngIf="this.result" class="result">
+
+    <h1>Prime: {{result.intitule}}</h1>
+    <div class="result-prime">{{result.prime}}</div>
+
+  </div>
+</div>
