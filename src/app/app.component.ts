@@ -5,6 +5,7 @@ import { Prestations } from './core/Model/Prestations';
 import { PdfInfoComponent } from './pdf-info/pdf-info.component';
 import { Foyer } from './core/Model/Foyer';
 import { jsPDF } from 'jspdf';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-root',
@@ -83,32 +84,34 @@ export class AppComponent implements AfterViewInit {
 
   public SavePDF(): void {
 
-    // const option = {
-    //   name: 'test.pdf',
-    //   image: {type: 'jpeg'},
-    //   html2canvas: { scale: 2 },
-    //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    // }
-    // const element = this.pdfInfo.nativeElement;
-    // element.style.display = 'block';
+    const option = {
+      name: 'test.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    }
+    const element = this.pdfInfo.nativeElement;
+    element.style.display = 'block';
 
-    // console.log(element);
-    // html2pdf()
-    //     .from(element)
-    //     .set(option)
-    //     .toPdf()
-    //     .outputPdf().then(res => {
-    //       console.log(res)
-    //     }).save();
+    console.log(element);
+    html2pdf()
+        .from(element)
+        .set(option)
+        .toPdf()
+        .outputPdf().then(res => {
+          console.log(res)
+        }).save().then(()=>{
+          element.style.display = 'none';
+        });
 
-    const DATA = this.pdfInfo.nativeElement;
-    DATA.style.display = 'block';
-    const doc: jsPDF = new jsPDF("p", "pt", "a4");
-    doc.html(DATA, {
-      callback: (doc) => {
-        doc.output("dataurlnewwindow");
-      }
-    });
+    // const DATA = this.pdfInfo.nativeElement;
+    // DATA.style.display = 'block';
+    // const doc: jsPDF = new jsPDF("p", "px", "a4");
+    // doc.html(DATA, {
+    //   callback: (doc) => {
+    //     doc.save();
+    //   }
+    // });
 
   }
 
