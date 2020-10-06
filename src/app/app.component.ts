@@ -86,7 +86,8 @@ export class AppComponent implements AfterViewInit {
     const option = {
       name: 'test.pdf',
       image: {type: 'jpeg'},
-      html2canvas: {}
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     }
     const element = this.pdfInfo.nativeElement;
     element.style.display = 'block';
@@ -95,10 +96,10 @@ export class AppComponent implements AfterViewInit {
     html2pdf()
         .from(element)
         .set(option)
-        .save().then(()=> {
-
-          element.style.display = 'none';
-        });
+        .toPdf()
+        .outputPdf().then(res => {
+          console.log(res)
+        }).save();
 
   }
 
