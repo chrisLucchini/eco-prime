@@ -21,8 +21,16 @@
  }
 
 }
-
-
+.headertitle{
+  padding: 10px;
+  position: absolute;
+  text-align:center;
+  font-weight: 500;
+  vertical-align: baseline;
+  width: 100%;
+  color: #34b456;
+  background-color: rgba($color: #080708, $alpha: 0.8);
+}
 
 .container-form{
   position: absolute;
@@ -44,8 +52,13 @@
 }
 
 .logo {
+  width: 55%;
+  margin: auto;
   text-align: center;
   margin-bottom: 20px;
+}
+img{
+  width: 100%;
 }
 
 .result {
@@ -61,7 +74,11 @@
   font-weight: 800;
 }
 
-@media (max-width: 500px) {
+input {
+  font-size: 16px;
+}
+
+@media (max-width: 850px) {
 
   ::ng-deep {
 
@@ -69,10 +86,6 @@
        width: 90%;
      }
 
-  }
-
-  img {
-    width: 100%;
   }
 
   .container-form {

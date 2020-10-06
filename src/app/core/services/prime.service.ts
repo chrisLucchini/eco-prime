@@ -15,7 +15,7 @@ export class PrimeService {
 
    }
 
-  calculPrime(nbPersonne: number, revenus: number, presta: any) {
+  calculPrime(nbPersonne: number, revenus: number, presta: any, nbItem: number) {
 
     console.log(nbPersonne);
     console.log(revenus);
@@ -23,6 +23,13 @@ export class PrimeService {
     if(nbPersonne <= 5 && nbPersonne > 0) {
 
       let groupe = this.palier[nbPersonne].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
+
+      if(presta['intitule'] === "Fenetre" || presta['intitule'] === "Isolation des murs exterieurs" ) {
+        return {
+          prime: presta['prime'][groupe['couleur']] * nbItem,
+          intitule: presta['intitule']
+        };
+      }
 
       return {
         prime: presta['prime'][groupe['couleur']],
@@ -56,6 +63,12 @@ export class PrimeService {
         ]
       }
       let groupe = newPalier['nbPers'].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
+      if(presta['intitule'] === "Fenetre" || presta['intitule'] === "Isolation des murs exterieurs" ) {
+        return {
+          prime: presta['prime'][groupe['couleur']] * nbItem,
+          intitule: presta['intitule']
+        };
+      }
       return {
         prime: presta['prime'][groupe['couleur']],
         intitule: presta['intitule']

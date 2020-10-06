@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'eco-prime';
   primeForm: FormGroup;
   prestations: Prestations;
+  choice: string;
   result: any;
 
   constructor(private primeService: PrimeService, private formBuilder: FormBuilder) {
@@ -29,9 +30,14 @@ export class AppComponent {
       nbPersonnes: '',
       revenu: '',
       travaux: '',
-      nbItem: ''
+      nbItem: '1'
     });
 
+  }
+
+  verifyChoice(choice): boolean {
+
+    return this.choice === choice;
   }
 
   submitPrime() {
@@ -39,15 +45,21 @@ export class AppComponent {
     let nbPersonnes = this.primeForm.value.nbPersonnes;
     let revenu = this.primeForm.value.revenu;
     let travaux = this.primeForm.value.travaux;
+    let nbItem = this.primeForm.value.nbItem;
 
     console.log(nbPersonnes);
     console.log(travaux.intitule);
 
     if(nbPersonnes && nbPersonnes && travaux) {
-      this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux);
+      this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem);
 
     }
 
+  }
+
+  onChangePresta(event) {
+
+    this.choice = event.intitule.split(" ")[0];
   }
 
   refreshForm() {

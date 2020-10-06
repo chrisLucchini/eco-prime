@@ -1,5 +1,5 @@
+  <h1 class="headertitle">SIMULATEUR DE PRIME</h1>
 <div class="container-form">
-  <div>
     <div class="logo">
         <img src="../assets/images/eco-habitat.png" alt="" />
     </div>
@@ -18,9 +18,17 @@
         <br>
         <mat-form-field appearance="fill">
           <mat-label>Travaux</mat-label>
-          <mat-select formControlName='travaux'>
+          <mat-select formControlName='travaux' (selectionChange)=this.onChangePresta($event.value)>
             <mat-option *ngFor="let item of this.prestations.liste" [value]="item">{{item.intitule}}</mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="verifyChoice('Fenetre')">
+          <mat-label>Fenetre</mat-label>
+          <input matInput formControlName='nbItem' type="number">
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="verifyChoice('Isolation')">
+          <mat-label>m2</mat-label>
+          <input matInput formControlName='nbItem' type="number">
         </mat-form-field>
 
         <button (click)=this.submitPrime() mat-raised-button color="primary" style="display: block; margin: auto;">Valider</button>
@@ -29,13 +37,11 @@
     <div *ngIf="this.result" class="result">
 
       <h1>Prime: {{result.intitule}}</h1>
-      <div class="result-prime">{{result.prime}}</div>
+      <div class="result-prime">{{result.prime}}€</div>
       <div><span (click)= this.refreshForm() class="material-icons" style="font-size: 15vh; cursor: pointer">
         update
         </span></div>
 
     </div>
-
-  </div>
 
 </div>
