@@ -73,9 +73,15 @@ img{
 }
 
 .result-prime {
-  padding: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   font-size: 8vh;
   font-weight: 800;
+}
+
+.btn-result {
+  display: flex;
+  justify-content: space-around;
 }
 
 input {

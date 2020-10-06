@@ -37,11 +37,16 @@
     </div>
     <div *ngIf="this.result" class="result">
 
-      <h1>Prime: {{result.intitulePrime}}</h1>
+      <h1 style="padding-top: 50px;">Prime: {{result.intitulePrime}}</h1>
       <div class="result-prime">{{result.prime}}€</div>
-      <div><span (click)= this.refreshForm() class="material-icons" style="font-size: 15vh; cursor: pointer">
+      <div class="btn-result">
+        <span (click)= this.refreshForm() class="material-icons" style="font-size: 10vh; cursor: pointer">
         update
-        </span></div>
+        </span>
+        <span (click) = "this.savePDF()"  class="material-icons" style="font-size: 10vh; cursor: pointer" class="material-icons" title="Télécharger sous format pdf">
+          picture_as_pdf
+          </span>
+      </div>
 
     </div>
 

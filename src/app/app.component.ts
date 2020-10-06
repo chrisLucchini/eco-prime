@@ -63,11 +63,6 @@ export class AppComponent implements AfterViewInit {
 
     if(nbPersonnes && nbPersonnes && travaux) {
       this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem);
-      if(this.result) {
-
-        this.SavePDF();
-      }
-
     }
 
   }
@@ -82,25 +77,23 @@ export class AppComponent implements AfterViewInit {
     this.result = undefined;
   }
 
-  public SavePDF(): void {
+  public savePDF(): void {
 
     const option = {
       name: 'test.pdf',
       image: {type: 'jpeg'},
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 1 },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     }
     const element = this.pdfInfo.nativeElement;
     element.style.display = 'block';
 
-    console.log(element);
     html2pdf()
         .from(element)
         .set(option)
         .toPdf()
-        .outputPdf().then(res => {
-          console.log(res)
-        }).save().then(()=>{
+        .outputPdf()
+        .save().then(()=>{
           element.style.display = 'none';
         });
 
