@@ -57,13 +57,13 @@
     },
     {
       "src": "assets/icons/apple-touch-icon.png",
-      "sizes": "128x128",
+      "sizes": "120x120",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/apple-touch-icon-precomposed.png",
-      "sizes": "152x152",
+      "sizes": "180x180",
       "type": "image/png",
       "purpose": "maskable any"
     }
