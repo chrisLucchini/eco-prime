@@ -82,8 +82,8 @@ export class AppComponent implements AfterViewInit {
     const option = {
       name: 'test.pdf',
       image: {type: 'jpeg'},
-      html2canvas: { scale: 1 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      html2canvas: { scale: 3 },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     }
     const element = this.pdfInfo.nativeElement;
     element.style.display = 'block';
