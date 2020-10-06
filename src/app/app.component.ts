@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Output, ViewChild } from '@angular/core';
 import { PrimeService } from './core/services/prime.service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Prestations } from './core/Model/Prestations';
+import { PdfInfoComponent } from './pdf-info/pdf-info.component';
+import * as html2pdf from 'html2pdf.js';
+import { Foyer } from './core/Model/Foyer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'eco-prime';
   primeForm: FormGroup;
   prestations: Prestations;
   choice: string;
-  result: any;
+  result: Foyer;
+
+  @ViewChild(PdfInfoComponent, {read: ElementRef}) pdfInfo: ElementRef;
 
   constructor(private primeService: PrimeService, private formBuilder: FormBuilder) {
 
@@ -23,6 +28,11 @@ export class AppComponent {
 
     this.prestations = new Prestations();
     this.initForm();
+  }
+
+  ngAfterViewInit() {
+
+    console.log(this.pdfInfo);
   }
 
   initForm() {
@@ -52,6 +62,10 @@ export class AppComponent {
 
     if(nbPersonnes && nbPersonnes && travaux) {
       this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem);
+      if(this.result) {
+
+        this.SavePDF();
+      }
 
     }
 
@@ -65,6 +79,27 @@ export class AppComponent {
   refreshForm() {
 
     this.result = undefined;
+  }
+
+  public SavePDF(): void {
+
+    const option = {
+      name: 'test.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: {}
+    }
+    const element = this.pdfInfo.nativeElement;
+    element.style.display = 'block';
+
+    console.log(element);
+    html2pdf()
+        .from(element)
+        .set(option)
+        .save().then(()=> {
+
+          element.style.display = 'none';
+        });
+
   }
 
 }

@@ -1,0 +1,87 @@
+<img src="../assets/images/eco-habitat.png" alt="" />
+<p style="color: lightgrey;">Rue des renards</p>
+<p style="color: lightgrey;">76190 STE MARIE DES CHAMPS</p>
+<p style="color: lightgrey;">Téléphone: 02.76.71.00.00</p>
+<p style="color: lightgrey;">Site Web: www.ecohabitat.com</p>
+
+<h1 style="text-align: center;">SIMULATION PRIME RENOV</h1>
+<table border="1" style="border-spacing: 2px; margin: auto">
+  <thead>
+    <tr>
+      <th>Nombre de personne dans le foyer</th>
+      <th style="color: blue;">BLEU</th>
+      <th style="color: yellow;">JAUNE</th>
+      <th style="color: blueviolet;">VIOLET</th>
+      <th style="color: pink;">ROSE</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>1</td>
+    <td *ngFor="let info of palierinfo['1']">
+      <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
+      <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td *ngFor="let info of palierinfo['2']">
+      <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
+      <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td *ngFor="let info of palierinfo['3']">
+      <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
+      <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td *ngFor="let info of palierinfo['4']">
+      <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
+      <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td *ngFor="let info of palierinfo['5']">
+      <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
+      <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>Par personne supplémentaire</td>
+    <td>4412</td>
+    <td>5651</td>
+    <td>8744</td>
+    <td>8744</td>
+  </tr>
+</table>
+<table border="1" style="border-spacing: 2px; margin:auto">
+  <thead>
+    <tr>
+      <th>Prestation</th>
+      <th style="color: blue;">BLEU</th>
+      <th style="color: yellow;">JAUNE</th>
+      <th style="color: blueviolet;">VIOLET</th>
+      <th style="color: pink;">ROSE</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let item of prestations['liste']">
+    <td>{{item.intitule}}</td>
+    <td>{{item.prime.Bleu}}</td>
+    <td>{{item.prime.Jaune}}</td>
+    <td>{{item.prime.Violet}}</td>
+    <td>{{item.prime.Rose}}</td>
+  </tr>
+</table>
+
+<div *ngIf="info" style="margin-top: 20px;">
+  <h3 style="text-decoration: underline;">Calcul de vos droits</h3>
+  <p>Intitulé: {{info.intitulePrime}}</p>
+  <p>Nombre de personne dans le foyer: {{info.nbPersonne}}</p>
+  <p>Vos revenus: {{info.revenus}}€</p>
+  <h2 style="text-align: center;">Prime accordée:</h2>
+  <p style="text-align: center; font-weight: 800; font-size: 35px;"> {{info.prime}}€</p>
+</div>

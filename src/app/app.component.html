@@ -1,4 +1,5 @@
-  <h1 class="headertitle">SIMULATEUR DE PRIME</h1>
+<div style="z-index: 100; height: 100vh; width: 100vw; background-image: url('./assets/images/fondcrepi.jpg');">
+<h1 class="headertitle">SIMULATEUR DE PRIME</h1>
 <div class="container-form">
     <div class="logo">
         <img src="../assets/images/eco-habitat.png" alt="" />
@@ -36,7 +37,7 @@
     </div>
     <div *ngIf="this.result" class="result">
 
-      <h1>Prime: {{result.intitule}}</h1>
+      <h1>Prime: {{result.intitulePrime}}</h1>
       <div class="result-prime">{{result.prime}}€</div>
       <div><span (click)= this.refreshForm() class="material-icons" style="font-size: 15vh; cursor: pointer">
         update
@@ -45,3 +46,5 @@
     </div>
 
 </div>
+</div>
+<app-pdf-info [info]=result style="z-index: 0;"></app-pdf-info>

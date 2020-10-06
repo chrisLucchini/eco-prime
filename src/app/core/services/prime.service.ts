@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Palier } from '../Model/Palier';
 import { Prestations } from '../Model/Prestations';
+import { Foyer } from '../Model/Foyer';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +26,10 @@ export class PrimeService {
       let groupe = this.palier[nbPersonne].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
 
       if(presta['intitule'] === "Fenetre" || presta['intitule'] === "Isolation des murs exterieurs" ) {
-        return {
-          prime: presta['prime'][groupe['couleur']] * nbItem,
-          intitule: presta['intitule']
-        };
+        return new Foyer(presta['prime'][groupe['couleur']] * nbItem, presta['intitule'], nbPersonne, nbItem, revenus);
       }
 
-      return {
-        prime: presta['prime'][groupe['couleur']],
-        intitule: presta['intitule']
-      };
+      return new Foyer(presta['prime'][groupe['couleur']], presta['intitule'], nbPersonne, nbItem, revenus);
     }
     else if(nbPersonne > 5) {
       let coeff = nbPersonne - 5;
@@ -64,15 +59,9 @@ export class PrimeService {
       }
       let groupe = newPalier['nbPers'].filter((elmt) => revenus >= elmt.min && revenus < elmt.max)[0];
       if(presta['intitule'] === "Fenetre" || presta['intitule'] === "Isolation des murs exterieurs" ) {
-        return {
-          prime: presta['prime'][groupe['couleur']] * nbItem,
-          intitule: presta['intitule']
-        };
+        return new Foyer(presta['prime'][groupe['couleur']] * nbItem, presta['intitule'], nbPersonne, nbItem, revenus);
       }
-      return {
-        prime: presta['prime'][groupe['couleur']],
-        intitule: presta['intitule']
-      };
+      return new Foyer(presta['prime'][groupe['couleur']], presta['intitule'], nbPersonne, nbItem, revenus);
 
     }
   }
