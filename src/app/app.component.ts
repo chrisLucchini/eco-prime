@@ -67,6 +67,7 @@ export class AppComponent implements AfterViewInit {
     } else {
       this.choixPrestation = 'Renov';
     }
+    this.primeForm.controls['travaux'].reset();
   }
 
   submitPrime() {

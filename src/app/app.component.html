@@ -4,16 +4,18 @@
     <div class="logo">
         <img src="../assets/images/eco-habitat.png" alt="" />
     </div>
-    <div class="toggle-btn-prime">
-      <div>
-        <img style="width: 150px;" src="../assets/images/renov.png" alt="" />
+    <mat-card class="toggle-btn-prime">
+      <div class="bloc-toggle">
+        <img style="width: 100%;" src="../assets/images/renov.png" alt="" />
       </div>
-      <mat-slide-toggle (click)="changePresta()"></mat-slide-toggle>
-      <div>
-        <img style="width: 150px;" src="../assets/images/edf.jpg" alt="" />
+      <div class="bloc-toggle">
+        <mat-slide-toggle (click)="changePresta()"></mat-slide-toggle>
+      </div>
+      <div class="bloc-toggle">
+        <img style="width: 100%;" src="../assets/images/edf.jpg" alt="" />
       </div>
 
-    </div>
+    </mat-card>
     <div class="form-prime" *ngIf="!this.result">
       <form [formGroup]="primeForm">
 
