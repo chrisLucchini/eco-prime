@@ -3,6 +3,7 @@
 <p style="color: lightgrey;">76190 STE MARIE DES CHAMPS</p>
 <p style="color: lightgrey;">Téléphone: 02.76.71.00.00</p>
 <p style="color: lightgrey;">Site Web: www.ecohabitat76.fr</p>
+<p style="color: lightgrey;">Siret: 80001905100013</p>
 
 <h1 style="text-align: center;">SIMULATION PRIME RENOV</h1>
 <table border="1" style="border-spacing: 2px; margin: auto">
@@ -77,11 +78,31 @@
   </tr>
 </table>
 
-<div *ngIf="info" style="margin-top: 20px;">
-  <h3 style="text-decoration: underline;">Calcul de vos droits</h3>
-  <p>Intitulé: {{info.intitulePrime}}</p>
-  <p>Nombre de personne dans le foyer: {{info.nbPersonne}}</p>
-  <p>Vos revenus: {{info.revenus}}€</p>
-  <h2 style="text-align: center;">Montant de la prime estimée:</h2>
-  <p style="text-align: center; font-weight: 800; font-size: 35px; color: #34b456"> {{info.prime}}€</p>
+<div *ngIf="info" class="result-info">
+<table>
+  <tr>
+    <td style="width: 300px;">
+      <h3 style="text-decoration: underline; color: #34b456; font-weight:500;">RÉCAPITULATIF DE VOTRE PROJET</h3>
+      <p style="font-weight: 500;">Type de travaux:</p>
+      <p>{{info.intitulePrime}}</p>
+      <div style="height: 10px;"></div>
+      <p style="font-weight: 500;">Nombre de personne dans le foyer:</p>
+      <p>{{info.nbPersonne}}</p>
+      <div style="height: 10px;"></div>
+      <p style="font-weight: 500;">Vos revenus:</p>
+      <p>{{info.revenus}}€</p>
+    </td>
+    <td>
+      <h2 style="text-align: center;">Montant de la prime estimée:</h2>
+      <p style="text-align: center; font-weight: 800; font-size: 35px; color: #34b456"> {{info.prime}}€*</p>
+      <p style="font-size: 10px;">*Toute demande de prime est soumis à inscription au programme correspondant par le client sur le site internet dédié, la sarl 3LP ECOHABITAT ne pourra être tenue responsable en cas de non inscription et non respect du processus de prime par le client </p>
+    </td>
+  </tr>
+</table>
+  <div>
+
+  </div>
+  <div>
+
+  </div>
 </div>
