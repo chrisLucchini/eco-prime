@@ -16,7 +16,9 @@ export class AppComponent implements AfterViewInit {
   title = 'eco-prime';
   primeForm: FormGroup;
   prestations: Prestations;
-  choice: string;
+  choixPrestation: string = 'Renov';
+
+  choixTravaux: string;
   result: Foyer;
 
   @ViewChild(PdfInfoComponent, {read: ElementRef}) pdfInfo: ElementRef;
@@ -46,9 +48,25 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-  verifyChoice(choice): boolean {
+  verifyPrestation(nomPresta) {
 
-    return this.choice === choice;
+    return this.choixPrestation === nomPresta;
+
+  }
+
+  verifyChoice(choix): boolean {
+
+    return this.choixTravaux === choix;
+  }
+
+  changePresta() {
+
+    if(this.choixPrestation == 'Renov') {
+      this.choixPrestation = 'Edf';
+
+    } else {
+      this.choixPrestation = 'Renov';
+    }
   }
 
   submitPrime() {
@@ -58,18 +76,16 @@ export class AppComponent implements AfterViewInit {
     let travaux = this.primeForm.value.travaux;
     let nbItem = this.primeForm.value.nbItem;
 
-    console.log(nbPersonnes);
-    console.log(travaux.intitule);
 
     if(nbPersonnes && nbPersonnes && travaux) {
-      this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem);
+      this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem, this.choixPrestation);
     }
 
   }
 
   onChangePresta(event) {
 
-    this.choice = event.intitule.split(" ")[0];
+    this.choixTravaux = event.intitule.split(" ")[0];
   }
 
   refreshForm() {

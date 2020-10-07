@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Foyer } from '../core/Model/Foyer';
 import {Palier} from '../core/Model/Palier';
 import {Prestations} from '../core/Model/Prestations';
@@ -18,11 +18,26 @@ export class PdfInfoComponent implements OnInit {
   prestations : Prestations;
 
   constructor() {
-    this.palierinfo = new Palier();
     this.prestations = new Prestations();
    }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+
+    if(this.info){
+      console.log(this.info.nomPrime);
+      this.palierinfo = new Palier(this.info.nomPrime);
+    }
+  }
+
+  verifyPrime(nomPrime) {
+
+    if(this.info){
+      return nomPrime === this.info.nomPrime;
+
+    }
   }
 
   verifyInfinity(montant) {

@@ -5,9 +5,9 @@
 <p style="color: lightgrey;">Site Web: www.ecohabitat76.fr</p>
 <p style="color: lightgrey;">Siret: 80001905100013</p>
 
-<h1 style="text-align: center;">SIMULATION PRIME RENOV</h1>
-<table border="1" style="border-spacing: 2px; margin: auto">
-  <thead>
+<h1 *ngIf="info" style="text-align: center;">SIMULATION PRIME {{info.nomPrime | uppercase}}</h1>
+<table border="1" style="border-spacing: 2px; margin: auto" *ngIf="palierinfo">
+  <thead *ngIf="verifyPrime('Renov')">
     <tr>
       <th>Nombre de personne dans le foyer</th>
       <th style="color: blue;">BLEU</th>
@@ -15,38 +15,46 @@
       <th style="color: blueviolet;">VIOLET</th>
       <th style="color: pink;">ROSE</th>
     </tr>
-  </thead>
+  </thead >
+  <thead *ngIf="verifyPrime('Edf')">
+    <tr>
+      <th>Nombre de personne dans le foyer</th>
+      <th style="color: blue;">BLEU</th>
+      <th style="color: yellow;">JAUNE</th>
+      <th style="color: blueviolet;">VIOLET</th>
+    </tr>
+  </thead >
   <tr>
     <td>1</td>
-    <td *ngFor="let info of palierinfo['1']">
+    <td *ngFor="let info of palierinfo.prime['1']">
       <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
       <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
     </td>
   </tr>
   <tr>
     <td>2</td>
-    <td *ngFor="let info of palierinfo['2']">
+    <td *ngFor="let info of palierinfo.prime['2']">
       <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
       <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
     </td>
   </tr>
   <tr>
     <td>3</td>
-    <td *ngFor="let info of palierinfo['3']">
+    <td *ngFor="let info of palierinfo.prime['3']">
       <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
       <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
     </td>
   </tr>
   <tr>
     <td>4</td>
-    <td *ngFor="let info of palierinfo['4']">
+    <td *ngFor="let info of palierinfo.prime['4']">
       <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
       <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
     </td>
   </tr>
   <tr>
     <td>5</td>
-    <td *ngFor="let info of palierinfo['5']">
+    <td *ngFor="let info of palierinfo.prime['5']">
       <span *ngIf="!this.verifyInfinity(info.max)">{{info.min}}-{{info.max}}</span>
       <span *ngIf="this.verifyInfinity(info.max)">>{{info.min}}</span>
     </td>
@@ -56,11 +64,11 @@
     <td>4412</td>
     <td>5651</td>
     <td>8744</td>
-    <td>8744</td>
+    <td *ngIf="verifyPrime('Renov')">8744</td>
   </tr>
 </table>
-<table border="1" style="border-spacing: 2px; margin:auto">
-  <thead>
+<table border="1" style="border-spacing: 2px; margin:auto" *ngIf="prestations">
+  <thead *ngIf="verifyPrime('Renov')">
     <tr>
       <th>Prestation</th>
       <th style="color: blue;">BLEU</th>
@@ -69,13 +77,31 @@
       <th style="color: pink;">ROSE</th>
     </tr>
   </thead>
-  <tr *ngFor="let item of prestations['liste']">
-    <td>{{item.intitule}}</td>
-    <td>{{item.prime.Bleu}}</td>
-    <td>{{item.prime.Jaune}}</td>
-    <td>{{item.prime.Violet}}</td>
-    <td>{{item.prime.Rose}}</td>
-  </tr>
+  <thead *ngIf="verifyPrime('Edf')">
+    <tr>
+      <th>Prestation</th>
+      <th style="color: blue;">BLEU</th>
+      <th style="color: yellow;">JAUNE</th>
+      <th style="color: blueviolet;">VIOLET</th>
+    </tr>
+  </thead>
+  <ng-container *ngIf="verifyPrime('Renov')">
+    <tr *ngFor="let item of prestations['listeRenov']">
+      <td>{{item.intitule}}</td>
+      <td>{{item.prime.Bleu}}</td>
+      <td>{{item.prime.Jaune}}</td>
+      <td>{{item.prime.Violet}}</td>
+      <td>{{item.prime.Rose}}</td>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="verifyPrime('Edf')">
+    <tr *ngFor="let item of prestations['listeEdf']">
+      <td>{{item.intitule}}</td>
+      <td>{{item.prime.Bleu}}</td>
+      <td>{{item.prime.Jaune}}</td>
+      <td>{{item.prime.Violet}}</td>
+    </tr>
+  </ng-container>
 </table>
 
 <div *ngIf="info" class="result-info">
@@ -95,7 +121,7 @@
     <td>
       <h2 style="text-align: center;">Montant de la prime estimée:</h2>
       <p style="text-align: center; font-weight: 800; font-size: 35px; color: #34b456"> {{info.prime}}€*</p>
-      <p style="font-size: 10px;">*Toute demande de prime est soumis à inscription au programme correspondant par le client sur le site internet dédié, la sarl 3LP ECOHABITAT ne pourra être tenue responsable en cas de non inscription et non respect du processus de prime par le client </p>
+      <p style="font-size: 10px;">*Toute demande de prime est soumise à inscription au programme correspondant par le client sur le site internet dédié, la sarl 3LP ECOHABITAT ne pourra être tenue responsable en cas de non inscription et non respect du processus de prime par le client </p>
     </td>
   </tr>
 </table>
