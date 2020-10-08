@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { PdfInfoComponent } from './pdf-info/pdf-info.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -28,6 +29,7 @@ import { PdfInfoComponent } from './pdf-info/pdf-info.component';
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatSlideToggleModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerImmediately' }),
     BrowserAnimationsModule
   ],

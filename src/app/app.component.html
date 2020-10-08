@@ -4,6 +4,18 @@
     <div class="logo">
         <img src="../assets/images/eco-habitat.png" alt="" />
     </div>
+    <mat-card class="toggle-btn-prime">
+      <div class="bloc-toggle">
+        <img style="width: 100%;" src="../assets/images/renov.png" alt="" />
+      </div>
+      <div class="bloc-toggle">
+        <mat-slide-toggle (click)="changePresta()"></mat-slide-toggle>
+      </div>
+      <div class="bloc-toggle">
+        <img style="width: 100%;" src="../assets/images/edf.jpg" alt="" />
+      </div>
+
+    </mat-card>
     <div class="form-prime" *ngIf="!this.result">
       <form [formGroup]="primeForm">
 
@@ -20,7 +32,12 @@
         <mat-form-field appearance="fill">
           <mat-label>Travaux</mat-label>
           <mat-select formControlName='travaux' (selectionChange)=this.onChangePresta($event.value)>
-            <mat-option *ngFor="let item of this.prestations.liste" [value]="item">{{item.intitule}}</mat-option>
+            <div *ngIf="verifyPrestation('Renov')">
+              <mat-option *ngFor="let item of this.prestations.listeRenov" [value]="item">{{item.intitule}}</mat-option>
+            </div>
+            <div *ngIf="verifyPrestation('Edf')">
+              <mat-option *ngFor="let item of this.prestations.listeEdf" [value]="item">{{item.intitule}}</mat-option>
+            </div>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" *ngIf="verifyChoice('Fenetre')">
@@ -32,7 +49,7 @@
           <input matInput formControlName='nbItem' type="number">
         </mat-form-field>
 
-        <button (click)=this.submitPrime() mat-raised-button color="primary" style="display: block; margin: auto;">Valider</button>
+        <button type="button" (click)=this.submitPrime() mat-raised-button color="primary" style="display: block; margin: auto;">Valider</button>
       </form>
     </div>
     <div *ngIf="this.result" class="result">
@@ -52,4 +69,4 @@
 
 </div>
 </div>
-<app-pdf-info [info]=result style="z-index: 0; width: 595pt; height: 842pt"></app-pdf-info>
+<app-pdf-info [info]=result style="z-index: 0; width: 595pt; height: 840pt"></app-pdf-info>

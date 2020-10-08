@@ -1,6 +1,6 @@
 export class Prestations {
 
-  liste= [
+  listeRenov = [
     {
       'intitule': 'Pompe à chaleur air/eau',
       'prime': {
@@ -46,5 +46,39 @@ export class Prestations {
         'Rose': 15
       }
     }
-  ]
+  ];
+  listeEdf = [
+    {
+      'intitule': 'Pompe à chaleur air/eau',
+      'prime': {
+        'Bleu': 4500,
+        'Jaune': 4500,
+        'Violet': 2500
+      }
+    },
+    {
+      'intitule': 'Chauffe eau thermodynamique',
+      'prime': {
+        'Bleu': 180,
+        'Jaune': 180,
+        'Violet': 80
+      }
+    },
+    {
+      'intitule': 'Fenetre',
+      'prime': {
+        'Bleu': 100,
+        'Jaune': 100,
+        'Violet': 46
+      }
+    },
+    {
+      'intitule': 'Isolation des murs exterieurs',
+      'prime': {
+        'Bleu': 45,
+        'Jaune': 45,
+        'Violet': 22
+      }
+    }
+  ];
 }
