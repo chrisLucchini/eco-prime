@@ -93,6 +93,8 @@
 
 .form-prime {
   background-color: #34b456;
+  overflow: hidden;
+  position: relative;
   width: 100%;
   border-radius: 5px;
   padding-top: 40px;
@@ -110,8 +112,12 @@
 }
 
 .result {
+  position:absolute;
+  height: 100%;
   width: 100%;
-  height: auto;
+  top: 0;
+  z-index: 999;
+  height: 100%;
   border-radius: 5px;
   background-color: #34b456;
   color: white;
