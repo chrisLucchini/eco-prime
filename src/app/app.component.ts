@@ -6,17 +6,39 @@ import { PdfInfoComponent } from './pdf-info/pdf-info.component';
 import { Foyer } from './core/Model/Foyer';
 import { jsPDF } from 'jspdf';
 import * as html2pdf from 'html2pdf.js';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('resultTrigger', [
+      state('true', style({
+        left: '0'
+      })),
+      state('false', style({
+        left: '100%'
+      })),
+      transition('false => true', animate('700ms linear', keyframes([
+        style({ left: '100%', offset: 0 }),
+        style({ left: '0', offset: 1 })
+
+      ]))),
+      transition('true => false', animate('700ms linear', keyframes([
+        style({ left: '0', offset: 0 }),
+        style({ left: '100%', offset: 1 })
+      ])))
+    ])
+  ]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent  {
   title = 'eco-prime';
   primeForm: FormGroup;
   prestations: Prestations;
   choixPrestation: string = 'Renov';
+
+  stateResult: string = 'false';
 
   choixTravaux: string;
   result: Foyer;
@@ -33,11 +55,6 @@ export class AppComponent implements AfterViewInit {
     this.initForm();
   }
 
-  ngAfterViewInit() {
-
-    console.log(this.pdfInfo);
-  }
-
   initForm() {
     this.primeForm = this.formBuilder.group({
       nbPersonnes: '',
@@ -46,6 +63,24 @@ export class AppComponent implements AfterViewInit {
       nbItem: '1'
     });
 
+  }
+
+  animateStateResult() {
+
+    if(this.result) {
+
+      this.stateResult = this.stateResult === 'false' ? 'true' : 'false';
+    }
+
+  }
+
+  transitionEnd(e: Event) {
+
+    if(e['fromState'] === 'true') {
+
+      this.result = undefined;
+
+    }
   }
 
   verifyPrestation(nomPresta) {
@@ -78,8 +113,9 @@ export class AppComponent implements AfterViewInit {
     let nbItem = this.primeForm.value.nbItem;
 
 
-    if(nbPersonnes && nbPersonnes && travaux) {
+    if(nbPersonnes && revenu && travaux) {
       this.result = this.primeService.calculPrime(nbPersonnes, revenu, travaux, nbItem, this.choixPrestation);
+      this.animateStateResult();
     }
 
   }
@@ -91,7 +127,7 @@ export class AppComponent implements AfterViewInit {
 
   refreshForm() {
 
-    this.result = undefined;
+    this.animateStateResult();
   }
 
   public savePDF(): void {
